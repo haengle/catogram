@@ -6,13 +6,24 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
 	plugins: [react()],
 	test: {
+		exclude: [
+			"dist",
+			"eslint.config.js",
+			"node_modules",
+			"tests",
+			"vite.config.ts",
+			"src/App.tsx",
+			"src/main.tsx",
+		],
 		coverage: {
 			exclude: [
 				"dist",
-				"eslint.config.mjs",
+				"eslint.config.js",
 				"node_modules",
 				"tests",
-				"vite.config.js",
+				"vite.config.ts",
+				"src/App.tsx",
+				"src/main.tsx",
 			],
 			thresholds: {
 				branches: 80,
@@ -23,6 +34,6 @@ export default defineConfig({
 		},
 		environment: "jsdom",
 		include: ["tests/**/*.test.ts"],
-		root: "./src",
+		root: "./",
 	},
 });
