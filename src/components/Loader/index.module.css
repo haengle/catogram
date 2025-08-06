@@ -1,0 +1,24 @@
+.loaderWrapper {
+	overflow: hidden;
+	height: calc(100dvh - 4em);
+	width: calc(100% - 4em);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border-radius: var(--border-radius);
+	margin: 2em;
+	box-shadow: 0 0 3em var(--soft-shadow);
+	gap: 2rem;
+}
+
+.loaderWrapper img {
+	width: min(50vw, 320px);
+}
+
+.loaderWrapper p {
+	font-family: var(--font-playful);
+	font-size: 3rem;
+	letter-spacing: 0.15rem;
+	margin: 0;
+}

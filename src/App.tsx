@@ -1,28 +1,30 @@
-import { useEffect, useMemo, useState } from "react";
-import CatLogo from "/cat-gradient.svg";
+import { useEffect, useState } from "react";
 import { getCatImages } from "./lib/getCatImages";
-
-import "./App.css";
+import { Loader } from "./components/Loader";
+import { CatList } from "./components/CatList";
 
 function App() {
-	const [catList, setCatList] = useState([]);
+	const [catState, setCatState] = useState({
+		catList: [],
+		loading: true,
+		imagesLoaded: 0,
+	});
 
-	const catData = useMemo(async () => {
-		const data = await getCatImages();
-		setCatList(data);
+	useEffect(() => {
+		getCatImages().then((data) => {
+			setCatState((prev) => ({
+				...prev,
+				catList: data || [],
+				loading: false,
+			}));
+		});
 	}, []);
 
-	console.log(catList);
+	console.table(catState.catList);
 	return (
-		<>
-			<img
-				src={CatLogo}
-				alt='Catogram'
-			/>
-			{catList.map((cats: CatList) => {
-				return <img src={cats.url} />;
-			})}
-		</>
+		<div className={`fade ${catState.loading ? "fade-in" : "fade-out"}`}>
+			{catState.loading ? <Loader /> : <CatList list={catState.catList} />}
+		</div>
 	);
 }
 
