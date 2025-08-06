@@ -6,15 +6,6 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
 	plugins: [react()],
 	test: {
-		exclude: [
-			"dist",
-			"eslint.config.js",
-			"node_modules",
-			"tests",
-			"vite.config.ts",
-			"src/App.tsx",
-			"src/main.tsx",
-		],
 		coverage: {
 			exclude: [
 				"dist",
@@ -24,6 +15,8 @@ export default defineConfig({
 				"vite.config.ts",
 				"src/App.tsx",
 				"src/main.tsx",
+				"vite-env.d.ts",
+				"types.d.ts",
 			],
 			thresholds: {
 				branches: 80,
