@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { getCatImages } from "./lib/getCatImages";
 import { Loader } from "./components/Loader";
 import { CatList } from "./components/CatList";
@@ -10,7 +10,16 @@ function App() {
 		imagesLoaded: 0,
 	});
 
+	/* NOTE: 
+		Adding this hasFetched ref to avoid a 2nd set of images being fetched
+		in dev/strict mode
+	*/
+	const hasFetched = useRef(false);
+
 	useEffect(() => {
+		if (hasFetched.current) return;
+		hasFetched.current = true;
+
 		getCatImages().then((data) => {
 			setCatState((prev) => ({
 				...prev,
@@ -22,9 +31,12 @@ function App() {
 
 	console.table(catState.catList);
 	return (
-		<div className={`fade ${catState.loading ? "fade-in" : "fade-out"}`}>
-			{catState.loading ? <Loader /> : <CatList list={catState.catList} />}
-		</div>
+		<>
+			<h1>Catogram</h1>
+			<div className={`fade ${catState.loading ? "fade-in" : "fade-out"}`}>
+				{catState.loading ? <Loader /> : <CatList list={catState.catList} />}
+			</div>
+		</>
 	);
 }
 

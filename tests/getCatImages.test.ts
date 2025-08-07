@@ -23,7 +23,7 @@ describe("getCatImages", () => {
 		const data = await getCatImages();
 
 		expect(fetch).toHaveBeenCalledWith(
-			`https://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1&api_key=${mockApiKey}`
+			`https://api.thecatapi.com/v1/images/search?limit=12&has_breeds=1&api_key=${mockApiKey}`
 		);
 		expect(data).toEqual(mockResponse);
 	});

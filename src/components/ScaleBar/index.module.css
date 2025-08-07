@@ -1,0 +1,23 @@
+.scaleBarWrapper {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.scaleBarLabel {
+	flex: 0 1 50%;
+	font-size: 0.85rem;
+}
+
+.scaleBar {
+	flex: auto;
+	height: 5px;
+	border-radius: var(--border-radius-sm);
+}
+
+@media (min-width: 767px) {
+	.scaleBarLabel {
+		flex: 0 1 150px;
+		font-size: 1rem;
+	}
+}
