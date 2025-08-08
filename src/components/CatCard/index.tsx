@@ -5,7 +5,13 @@ import { isPortrait } from "../../lib/utils/isPortrait";
 import styles from "./index.module.css";
 import { CatModal } from "../CatModal";
 
-export const CatCard = ({ data }: { data: CatDetail }) => {
+export const CatCard = ({
+	data,
+	index,
+}: {
+	data: CatDetail;
+	index: number;
+}) => {
 	const [detailOpen, setDetailOpen] = useState(false);
 	const breedName = data.breeds?.[0].name ?? "cat";
 
@@ -49,7 +55,7 @@ export const CatCard = ({ data }: { data: CatDetail }) => {
 						height={260}
 						src='/catogram/cat.svg'
 						alt={breedName}
-						loading='lazy'
+						loading={index < 3 ? "eager" : "lazy"}
 						onLoad={handleImageLoad}
 						className={styles.catCardImg}
 					/>

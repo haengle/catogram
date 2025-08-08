@@ -30,6 +30,22 @@ describe("getCatImages", () => {
 		expect(data).toEqual(mockResponse);
 	});
 
+	it("returns empty array if response is not ok", async () => {
+		// @ts-ignore
+		fetch.mockResolvedValueOnce({
+			ok: false,
+			status: 500,
+			json: vi.fn().mockResolvedValueOnce(mockResponse),
+		});
+
+		const data = await getCatImages();
+
+		expect(fetch).toHaveBeenCalledWith(
+			`https://api.thecatapi.com/v1/images/search?limit=12&has_breeds=1&api_key=${mockApiKey}`
+		);
+		expect(data).toEqual([]);
+	});
+
 	it("logs error and returns empty array if fetch throws", async () => {
 		const error = new Error("Network error");
 		// @ts-ignore

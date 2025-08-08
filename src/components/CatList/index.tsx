@@ -14,10 +14,11 @@ export const CatList = ({
 		<section className={styles.catGrid}>
 			{Array.isArray(list) && list.length > 0 ? (
 				<>
-					{list.map((cats) => (
+					{list.map((cats, index) => (
 						<CatCard
 							data={cats}
 							key={cats.id}
+							index={index}
 						/>
 					))}
 					{loadMore ? (
