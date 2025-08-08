@@ -59,14 +59,19 @@ export const CatModal = ({
 				Close
 			</button>
 			<div className={styles.catModalBody}>
-				<div className={styles.catModalImg}>
+				<div
+					className={styles.catModalImg}
+					style={{
+						backgroundImage: `url(${data.url})`,
+						backgroundSize: "cover",
+					}}
+				>
 					<img
 						data-testid='cat-img'
 						src={data.url}
 						width={320}
 						height={260}
 						alt={name}
-						loading='lazy'
 					/>
 				</div>
 				{data.breeds?.[0] && (
