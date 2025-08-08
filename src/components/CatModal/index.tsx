@@ -75,15 +75,17 @@ export const CatModal = ({
 						<strong>Temperament:</strong> {temperament}
 					</p>
 					<p>{description}</p>
-					<p>
-						<a
-							href={wikipedia_url}
-							target='_blank'
-							rel='noopener'
-						>
-							Read more about the {name} on Wikipedia
-						</a>
-					</p>
+					{wikipedia_url ? (
+						<p>
+							<a
+								href={wikipedia_url}
+								target='_blank'
+								rel='noopener'
+							>
+								Read more about the {name} on Wikipedia
+							</a>
+						</p>
+					) : null}
 				</div>
 				<div className={styles.catModalAttributes}>
 					<ScaleBar

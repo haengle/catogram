@@ -5,6 +5,12 @@
 	padding: 1em;
 }
 
+.loadMoreBtn {
+	font-family: var(--font-playful);
+	font-size: 3rem;
+	line-height: 1;
+}
+
 @media (min-width: 420px) {
 	.catGrid {
 		display: grid;

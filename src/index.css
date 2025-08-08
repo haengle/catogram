@@ -1,6 +1,6 @@
 :root {
-	--border-radius: 2em;
-	--border-radius-sm: 0.65em;
+	--border-radius: 32px;
+	--border-radius-sm: 8px;
 	--soft-shadow: rgba(0, 0, 0, 0.05);
 	--medium-shadow: rgba(0, 0, 0, 0.15);
 	--font-playful: "Londrina Shadow", cursive;
@@ -105,6 +105,11 @@ button:hover {
 button:focus,
 button:focus-visible {
 	outline: 4px auto var(--color-dark-purple);
+}
+
+button[disabled] {
+	opacity: 0.5;
+	cursor: default;
 }
 
 .fade {

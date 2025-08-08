@@ -3,14 +3,14 @@ interface CatDetail {
 	id: string;
 	width: number;
 	height: number;
-	breeds: Array[CatBreedDetail];
+	breeds: CatBreedDetail[];
 }
 
 interface CatBreedDetail {
 	description: string;
 	name: string;
 	temperament: string;
-	wikipedia_url: string;
+	wikipedia_url?: string;
 	dog_friendly: number;
 	energy_level: number;
 	health_issues: number;

@@ -4,10 +4,14 @@ import { Loader } from "./components/Loader";
 import { CatList } from "./components/CatList";
 
 function App() {
-	const [catState, setCatState] = useState({
+	const [catState, setCatState] = useState<{
+		catList: CatDetail[];
+		loading: boolean;
+		imagesLoading: boolean;
+	}>({
 		catList: [],
 		loading: true,
-		imagesLoaded: 0,
+		imagesLoading: false,
 	});
 
 	/* NOTE: 
@@ -29,12 +33,31 @@ function App() {
 		});
 	}, []);
 
+	const handleMoreImages = () => {
+		setCatState((prev) => ({ ...prev, imagesLoading: true }));
+		getCatImages().then((data) => {
+			setCatState((prev) => ({
+				...prev,
+				catList: [...prev.catList, ...(data || [])],
+				imagesLoading: false,
+			}));
+		});
+	};
+
 	console.table(catState.catList);
 	return (
 		<>
 			<h1>Catogram</h1>
 			<div className={`fade ${catState.loading ? "fade-in" : "fade-out"}`}>
-				{catState.loading ? <Loader /> : <CatList list={catState.catList} />}
+				{catState.loading ? (
+					<Loader />
+				) : (
+					<CatList
+						list={catState.catList}
+						loadMore={handleMoreImages}
+						moreLoading={catState.imagesLoading}
+					/>
+				)}
 			</div>
 		</>
 	);
