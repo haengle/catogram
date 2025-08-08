@@ -17,6 +17,8 @@ describe("getCatImages", () => {
 	it("fetches cat images from the API and returns data", async () => {
 		// @ts-ignore
 		fetch.mockResolvedValueOnce({
+			ok: true,
+			status: 200,
 			json: vi.fn().mockResolvedValueOnce(mockResponse),
 		});
 
@@ -28,7 +30,7 @@ describe("getCatImages", () => {
 		expect(data).toEqual(mockResponse);
 	});
 
-	it("logs error and returns undefined if fetch throws", async () => {
+	it("logs error and returns empty array if fetch throws", async () => {
 		const error = new Error("Network error");
 		// @ts-ignore
 		fetch.mockRejectedValueOnce(error);
@@ -42,7 +44,7 @@ describe("getCatImages", () => {
 			"error fetching from Cat API",
 			error
 		);
-		expect(data).toBeUndefined();
+		expect(data).toEqual([]);
 
 		consoleErrorSpy.mockRestore();
 	});

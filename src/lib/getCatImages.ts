@@ -4,9 +4,13 @@ export async function getCatImages() {
 		const res = await fetch(
 			`https://api.thecatapi.com/v1/images/search?limit=12&has_breeds=1&api_key=${API_KEY}`
 		);
+		if (!res.ok) {
+			return [];
+		}
 		const data = await res.json();
 		return data;
 	} catch (error) {
 		console.error("error fetching from Cat API", error);
+		return [];
 	}
 }
