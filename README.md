@@ -20,12 +20,13 @@ The app will then be available at http://localhost:5173
 
 - This project uses [The Cat API](https://www.thecatapi.com)
 - Cat icons from [SVG Repo](https://www.svgrepo.com)
-- CSS designed in browser (no framework/UI kit used)
+- CSS developed in browser (no framework/UI kit used)
 - Tests using Vitest & React Testing Library
 
 ### Potential Enhancements
 
 - The Cat API doesn't offer descriptive names for the images (e.g. "fluffy gray cat laying on kitchen floor") which will make it difficult for voiceover users to discern what each picture is - there is potential for using an AI layer to describe each image
-- Filtering images by characteristic (breed, attribute)
-- Offering a search bar with type-ahead suggestions for images of a specific breed
+- The API doesn't provide multiple sizes for each image to use srcset / responsive images, meaning the full size image is served to every device. If this app were going to be scaled or used in production, it would make sense to convert to a Next app & use Next's `<Image>` component for this.
+- Offer filters to sort images by characteristic (breed, attribute)
+- Offering a search bar with type-ahead suggestions for loading images of a specific breed
 - Infinite scroll or pagination to load more images
