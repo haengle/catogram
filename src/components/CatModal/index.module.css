@@ -63,6 +63,12 @@
 		}
 	}
 
+	/* if the breed data isn't returned, make image fill modal */
+	.catModalBody > div:only-child {
+		grid-row: span 2;
+		grid-column: span 2;
+	}
+
 	.catModalAttributes {
 		margin-top: auto;
 	}

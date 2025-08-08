@@ -19,7 +19,7 @@ export const CatModal = ({
 		health_issues,
 		intelligence,
 		vocalisation,
-	} = data.breeds[0];
+	} = data.breeds?.[0] ?? {};
 
 	const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -69,51 +69,55 @@ export const CatModal = ({
 						loading='lazy'
 					/>
 				</div>
-				<div className={styles.catModalContent}>
-					<h2 id={data.id}>{name}</h2>
-					<p>
-						<strong>Temperament:</strong> {temperament}
-					</p>
-					<p>{description}</p>
-					{wikipedia_url ? (
-						<p>
-							<a
-								href={wikipedia_url}
-								target='_blank'
-								rel='noopener'
-							>
-								Read more about the {name} on Wikipedia
-							</a>
-						</p>
-					) : null}
-				</div>
-				<div className={styles.catModalAttributes}>
-					<ScaleBar
-						score={dog_friendly}
-						label='Dog Friendly'
-						color='blue'
-					/>
-					<ScaleBar
-						score={energy_level}
-						label='Energy Level'
-						color='pink'
-					/>
-					<ScaleBar
-						score={health_issues}
-						label='Health Issues'
-						color='dark-red'
-					/>
-					<ScaleBar
-						score={intelligence}
-						label='Intelligence'
-						color='purple'
-					/>
-					<ScaleBar
-						score={vocalisation}
-						label='Vocalisation'
-						color='mid-blue'
-					/>
-				</div>
+				{data.breeds?.[0] && (
+					<>
+						<div className={styles.catModalContent}>
+							<h2 id={data.id}>{name}</h2>
+							<p>
+								<strong>Temperament:</strong> {temperament}
+							</p>
+							<p>{description}</p>
+							{wikipedia_url ? (
+								<p>
+									<a
+										href={wikipedia_url}
+										target='_blank'
+										rel='noopener'
+									>
+										Read more about the {name} on Wikipedia
+									</a>
+								</p>
+							) : null}
+						</div>
+						<div className={styles.catModalAttributes}>
+							<ScaleBar
+								score={dog_friendly}
+								label='Dog Friendly'
+								color='blue'
+							/>
+							<ScaleBar
+								score={energy_level}
+								label='Energy Level'
+								color='pink'
+							/>
+							<ScaleBar
+								score={health_issues}
+								label='Health Issues'
+								color='dark-red'
+							/>
+							<ScaleBar
+								score={intelligence}
+								label='Intelligence'
+								color='purple'
+							/>
+							<ScaleBar
+								score={vocalisation}
+								label='Vocalisation'
+								color='mid-blue'
+							/>
+						</div>
+					</>
+				)}
 			</div>
 		</dialog>
 	);

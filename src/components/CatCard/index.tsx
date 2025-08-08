@@ -7,6 +7,7 @@ import { CatModal } from "../CatModal";
 
 export const CatCard = ({ data }: { data: CatDetail }) => {
 	const [detailOpen, setDetailOpen] = useState(false);
+	const breedName = data.breeds?.[0].name ?? "cat";
 
 	const style: React.CSSProperties = {
 		...(isLandscape(data.width, data.height) && {
@@ -39,7 +40,7 @@ export const CatCard = ({ data }: { data: CatDetail }) => {
 				className={styles.catCard}
 				onClick={handleCardClick}
 				style={style}
-				aria-label={`${data.breeds[0].name} details`}
+				aria-label={`${breedName} details`}
 			>
 				<div className={styles.catCardImgWrapper}>
 					<img
@@ -47,7 +48,7 @@ export const CatCard = ({ data }: { data: CatDetail }) => {
 						width={320}
 						height={260}
 						src='/catogram/cat.svg'
-						alt={data.breeds[0].name}
+						alt={breedName}
 						loading='lazy'
 						onLoad={handleImageLoad}
 						className={styles.catCardImg}
