@@ -45,10 +45,14 @@ export const CatModal = ({
 
 	return (
 		<dialog
+			data-testid='cat-modal'
 			onClose={handleClose}
 			ref={dialogRef}
+			aria-modal='true'
+			aria-labelledby={data.id}
 		>
 			<button
+				data-testid='modal-close'
 				autoFocus
 				onClick={handleClose}
 			>
@@ -57,6 +61,7 @@ export const CatModal = ({
 			<div className={styles.catModalBody}>
 				<div className={styles.catModalImg}>
 					<img
+						data-testid='cat-img'
 						src={data.url}
 						width={320}
 						height={260}
@@ -65,7 +70,7 @@ export const CatModal = ({
 					/>
 				</div>
 				<div className={styles.catModalContent}>
-					<h2>{name}</h2>
+					<h2 id={data.id}>{name}</h2>
 					<p>
 						<strong>Temperament:</strong> {temperament}
 					</p>

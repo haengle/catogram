@@ -25,8 +25,9 @@ export default defineConfig({
 				statements: 94,
 			},
 		},
+		globals: true,
 		environment: "jsdom",
-		include: ["tests/**/*.test.ts"],
+		include: ["tests/**/*.test.ts", "tests/**/*.test.tsx"],
 		root: "./",
 	},
 });

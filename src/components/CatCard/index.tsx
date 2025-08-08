@@ -34,12 +34,12 @@ export const CatCard = ({ data }: { data: CatDetail }) => {
 
 	return (
 		<>
-			<div
+			<button
+				data-testid='cat-card'
 				className={styles.catCard}
-				role='button'
-				tabIndex={0}
 				onClick={handleCardClick}
 				style={style}
+				aria-label={`${data.breeds[0].name} details`}
 			>
 				<div className={styles.catCardImgWrapper}>
 					<img
@@ -54,7 +54,7 @@ export const CatCard = ({ data }: { data: CatDetail }) => {
 					/>
 					<span>Cat Details</span>
 				</div>
-			</div>
+			</button>
 			{detailOpen ? (
 				<CatModal
 					data={data}
