@@ -46,7 +46,7 @@ export const CatCard = ({ data }: { data: CatDetail }) => {
 						data-src={data.url}
 						width={320}
 						height={260}
-						src='/cat.svg'
+						src='/catogram/cat.svg'
 						alt={data.breeds[0].name}
 						loading='lazy'
 						onLoad={handleImageLoad}
