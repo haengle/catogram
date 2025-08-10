@@ -46,8 +46,10 @@ function App() {
 
 	return (
 		<>
-			<h1>Catogram</h1>
-			<div className={`fade ${catState.loading ? "fade-in" : "fade-out"}`}>
+			<header>
+				<h1>Catogram</h1>
+			</header>
+			<main className={`fade ${catState.loading ? "fade-in" : "fade-out"}`}>
 				{catState.loading ? (
 					<Loader />
 				) : (
@@ -57,7 +59,7 @@ function App() {
 						moreLoading={catState.imagesLoading}
 					/>
 				)}
-			</div>
+			</main>
 		</>
 	);
 }
