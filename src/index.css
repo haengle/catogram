@@ -7,7 +7,6 @@
 	--font-body: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
 
 	--color-dark-red: #830a3a;
-	--color-pink: #e34676;
 	--color-purple: #842cbc;
 	--color-dark-purple: #510a7d;
 	--color-blue: #58a9ff;
@@ -20,6 +19,12 @@
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
 }
 
 img {
@@ -42,12 +47,6 @@ p {
 	margin: 0 0 1em;
 }
 
-*,
-*::after,
-*::before {
-	box-sizing: border-box;
-}
-
 body {
 	margin: 0;
 	min-height: 100vh;
@@ -57,9 +56,9 @@ h1 {
 	font-size: 3.2em;
 	line-height: 1.1;
 	font-family: var(--font-playful);
-	text-shadow: 3px 3px 14px purple;
+	text-shadow: 3px 3px 14px var(--color-purple);
 	text-align: center;
-	letter-spacing: 0.1rem;
+	letter-spacing: 0.2rem;
 }
 
 dialog {
@@ -69,8 +68,6 @@ dialog {
 	background: rgba(255, 255, 255, 0.8);
 	border-radius: var(--border-radius-sm);
 	border: 1px solid rgba(255, 255, 255, 0.9);
-	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), var(--soft-shadow);
-	overflow: hidden;
 	padding: 0;
 }
 
