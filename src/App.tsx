@@ -44,7 +44,6 @@ function App() {
 		});
 	};
 
-	console.table(catState.catList);
 	return (
 		<>
 			<h1>Catogram</h1>
