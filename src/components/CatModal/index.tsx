@@ -96,27 +96,27 @@ export const CatModal = ({
 						</div>
 						<div className={styles.catModalAttributes}>
 							<ScaleBar
-								score={dog_friendly}
+								score={dog_friendly ?? 0}
 								label='Dog Friendly'
 								color='blue'
 							/>
 							<ScaleBar
-								score={energy_level}
+								score={energy_level ?? 0}
 								label='Energy Level'
 								color='pink'
 							/>
 							<ScaleBar
-								score={health_issues}
+								score={health_issues ?? 0}
 								label='Health Issues'
 								color='dark-red'
 							/>
 							<ScaleBar
-								score={intelligence}
+								score={intelligence ?? 0}
 								label='Intelligence'
 								color='purple'
 							/>
 							<ScaleBar
-								score={vocalisation}
+								score={vocalisation ?? 0}
 								label='Vocalisation'
 								color='mid-blue'
 							/>

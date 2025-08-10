@@ -3,7 +3,7 @@ interface CatDetail {
 	id: string;
 	width: number;
 	height: number;
-	breeds: CatBreedDetail[];
+	breeds?: CatBreedDetail[];
 }
 
 interface CatBreedDetail {
