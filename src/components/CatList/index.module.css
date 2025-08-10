@@ -5,12 +5,6 @@
 	padding: 1em;
 }
 
-.loadMoreBtn {
-	font-family: var(--font-playful);
-	font-size: 2.5rem;
-	line-height: 1;
-}
-
 .loaderWrapper {
 	overflow: hidden;
 	height: calc(100dvh - 4em);
@@ -60,9 +54,5 @@
 		grid-template-rows: repeat(auto-fill, 260px);
 		grid-auto-flow: dense;
 		grid-gap: 0.5rem;
-	}
-
-	.loadMoreBtn {
-		font-size: 3rem;
 	}
 }

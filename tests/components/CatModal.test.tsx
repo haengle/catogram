@@ -28,7 +28,9 @@ describe("CatModal", () => {
 			/>
 		);
 		expect(screen.getByTestId("cat-modal")).toBeInTheDocument();
-		expect(screen.getByText(mockCatObj[0].breeds[0].name)).toBeInTheDocument();
+		expect(
+			screen.getByText(mockCatObj[0].breeds?.[0]?.name ?? "")
+		).toBeInTheDocument();
 		expect(screen.getByTestId("cat-img")).toHaveAttribute(
 			"src",
 			mockCatObj[0].url

@@ -1,0 +1,11 @@
+.loadMoreBtn {
+	font-family: var(--font-playful);
+	font-size: 2.5rem;
+	line-height: 1;
+}
+
+@media (min-width: 420px) {
+	.loadMoreBtn {
+		font-size: 3rem;
+	}
+}

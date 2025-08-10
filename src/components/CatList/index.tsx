@@ -1,4 +1,6 @@
 import { CatCard } from "../CatCard";
+import { CatButton } from "../CatButton";
+
 import styles from "./index.module.css";
 
 export const CatList = ({
@@ -22,27 +24,21 @@ export const CatList = ({
 						/>
 					))}
 					{loadMore ? (
-						<button
-							className={styles.loadMoreBtn}
-							data-testid='load-more'
-							onClick={loadMore}
-							disabled={moreLoading}
-						>
-							Moar Cats!
-						</button>
+						<CatButton
+							onCatButtonClick={loadMore}
+							isDisabled={moreLoading}
+							text={"Moar Cats!"}
+						/>
 					) : null}
 				</>
 			) : (
 				<div className={styles.errorMsg}>
 					<p>Oops, try again:</p>
-					<button
-						className={styles.loadMoreBtn}
-						data-testid='load-more'
-						onClick={loadMore}
-						disabled={moreLoading}
-					>
-						Get Cats!
-					</button>
+					<CatButton
+						onCatButtonClick={loadMore}
+						isDisabled={moreLoading}
+						text={"Try Meow!"}
+					/>
 				</div>
 			)}
 		</section>
