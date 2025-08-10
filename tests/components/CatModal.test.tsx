@@ -23,9 +23,13 @@ describe("CatModal", () => {
 			/>
 		);
 		expect(screen.getByTestId("cat-modal")).toBeInTheDocument();
-		expect(
-			screen.getByText(mockCatObj[0].breeds?.[0]?.name ?? "")
-		).toBeInTheDocument();
+		expect(screen.getByTestId("header")).toHaveTextContent("Bengal");
+		expect(screen.getByTestId("temperament")).toHaveTextContent(
+			"Alert, Agile, Energetic, Demanding, Intelligent"
+		);
+		expect(screen.getByTestId("description")).toHaveTextContent(
+			"Bengals are a lot of fun to live with, but they're definitely not the cat for everyone, or for first-time cat owners. Extremely intelligent, curious and active, they demand a lot of interaction and woe betide the owner who doesn't provide it."
+		);
 		expect(screen.getByTestId("cat-img")).toHaveAttribute(
 			"src",
 			mockCatObj[0].url
@@ -56,5 +60,27 @@ describe("CatModal", () => {
 		unmount();
 		expect(document.body.hasAttribute("inert")).toBe(false);
 		expect(document.body.style.overflow).toBe("");
+	});
+
+	it("renders only image if breed data is missing", () => {
+		render(
+			<CatModal
+				data={mockCatObj[2]}
+				onClose={onClose}
+			/>
+		);
+		expect(screen.getByTestId("cat-modal")).toBeInTheDocument();
+		expect(screen.queryByTestId("header")).toBeNull();
+	});
+
+	it("does not render wikipedia link if url missing", () => {
+		render(
+			<CatModal
+				data={mockCatObj[1]}
+				onClose={onClose}
+			/>
+		);
+		expect(screen.getByTestId("cat-modal")).toBeInTheDocument();
+		expect(screen.queryByTestId("wiki-url")).toBeNull();
 	});
 });

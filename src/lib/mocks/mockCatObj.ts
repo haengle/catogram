@@ -94,7 +94,6 @@ export const mockCatObj = [
 				rex: 0,
 				suppressed_tail: 0,
 				short_legs: 0,
-				wikipedia_url: "https://en.wikipedia.org/wiki/Birman",
 				hypoallergenic: 0,
 				reference_image_id: "HOrX5gwLS",
 			},

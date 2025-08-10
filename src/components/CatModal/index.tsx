@@ -9,17 +9,19 @@ export const CatModal = ({
 	data: CatDetail;
 	onClose: () => void;
 }) => {
+	const { breeds = [] } = data ?? {};
+
 	const {
-		name,
-		description,
-		temperament,
-		wikipedia_url,
+		name = "",
+		description = "",
+		temperament = "",
+		wikipedia_url = "",
 		dog_friendly,
 		energy_level,
 		health_issues,
 		intelligence,
 		vocalisation,
-	} = data.breeds?.[0] ?? {};
+	} = breeds[0] ?? {};
 
 	const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -74,17 +76,23 @@ export const CatModal = ({
 						alt={name}
 					/>
 				</div>
-				{data.breeds?.[0] && (
+				{Array.isArray(data.breeds) && data.breeds.length > 0 && (
 					<>
 						<div className={styles.catModalContent}>
-							<h2 id={data.id}>{name}</h2>
-							<p>
+							<h2
+								id={data.id}
+								data-testid='header'
+							>
+								{name}
+							</h2>
+							<p data-testid='temperament'>
 								<strong>Temperament:</strong> {temperament}
 							</p>
-							<p>{description}</p>
+							<p data-testid='description'>{description}</p>
 							{wikipedia_url ? (
 								<p>
 									<a
+										data-testid='wiki-url'
 										href={wikipedia_url}
 										target='_blank'
 										rel='noopener'
