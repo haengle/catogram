@@ -15,11 +15,6 @@ describe("CatModal", () => {
 		document.body.style.overflow = "";
 	});
 
-	afterEach(() => {
-		document.body.removeAttribute("inert");
-		document.body.style.overflow = "";
-	});
-
 	it("renders modal with cat details", () => {
 		render(
 			<CatModal
