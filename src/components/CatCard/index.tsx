@@ -1,9 +1,9 @@
 import type { SyntheticEvent } from "react";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import { isLandscape } from "../../lib/utils/isLandscape";
 import { isPortrait } from "../../lib/utils/isPortrait";
+import catSvg from "/cat.svg";
 import styles from "./index.module.css";
-import { CatModal } from "../CatModal";
 
 export const CatCard = ({
 	data,
@@ -12,7 +12,6 @@ export const CatCard = ({
 	data: CatDetail;
 	index: number;
 }) => {
-	const [detailOpen, setDetailOpen] = useState(false);
 	const breedName = data.breeds?.[0].name ?? "cat";
 
 	const style: React.CSSProperties = {
@@ -35,16 +34,12 @@ export const CatCard = ({
 		}
 	}
 
-	function handleCardClick() {
-		setDetailOpen(true);
-	}
-
 	return (
 		<>
-			<button
+			<Link
 				data-testid='cat-card'
 				className={styles.catCard}
-				onClick={handleCardClick}
+				to={`/cat/${data.id}`}
 				style={style}
 				aria-label={`${breedName} details`}
 			>
@@ -53,7 +48,7 @@ export const CatCard = ({
 						data-src={data.url}
 						width={320}
 						height={260}
-						src='/catogram/cat.svg'
+						src={catSvg}
 						alt={breedName}
 						loading={index < 3 ? "eager" : "lazy"}
 						onLoad={handleImageLoad}
@@ -61,13 +56,7 @@ export const CatCard = ({
 					/>
 					<span>Cat Details</span>
 				</div>
-			</button>
-			{detailOpen ? (
-				<CatModal
-					data={data}
-					onClose={() => setDetailOpen(false)}
-				/>
-			) : null}
+			</Link>
 		</>
 	);
 };

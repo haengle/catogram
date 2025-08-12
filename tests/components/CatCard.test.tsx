@@ -1,18 +1,16 @@
 import { render, fireEvent, screen } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
+import { BrowserRouter } from "react-router-dom";
 import { CatCard } from "../../src/components/CatCard/index";
 import { mockCatObj } from "../../src/lib/mocks/mockCatObj";
 import "@testing-library/jest-dom";
 
-describe("CatCard", () => {
-	beforeEach(() => {
-		// Mock showModal and close methods on HTMLDialogElement
-		HTMLDialogElement.prototype.showModal = vi.fn();
-		HTMLDialogElement.prototype.close = vi.fn();
-	});
+const renderWithRouter = (ui: React.ReactElement) =>
+	render(<BrowserRouter>{ui}</BrowserRouter>);
 
+describe("CatCard", () => {
 	it("renders with correct aria-label and image alt", () => {
-		render(
+		renderWithRouter(
 			<CatCard
 				data={mockCatObj[0]}
 				index={0}
@@ -20,12 +18,13 @@ describe("CatCard", () => {
 		);
 		const button = screen.getByTestId("cat-card");
 		expect(button).toHaveAttribute("aria-label", "Bengal details");
+		expect(button).toHaveAttribute("href", `/cat/${mockCatObj[0].id}`);
 		const img = screen.getByAltText("Bengal");
 		expect(img).toBeInTheDocument();
 	});
 
 	it("loads image from data-src on load", () => {
-		render(
+		renderWithRouter(
 			<CatCard
 				data={mockCatObj[0]}
 				index={0}
@@ -39,7 +38,7 @@ describe("CatCard", () => {
 	});
 
 	it("uses fallback alt when breeds is empty", () => {
-		render(
+		renderWithRouter(
 			<CatCard
 				data={{ ...mockCatObj[3] }}
 				index={0}
@@ -53,14 +52,14 @@ describe("CatCard", () => {
 	});
 
 	it("sets loading to eager for index < 3, lazy otherwise", () => {
-		render(
+		renderWithRouter(
 			<CatCard
 				data={mockCatObj[0]}
 				index={1}
 			/>
 		);
 		expect(screen.getByRole("img")).toHaveAttribute("loading", "eager");
-		render(
+		renderWithRouter(
 			<CatCard
 				data={mockCatObj[0]}
 				index={3}
@@ -70,7 +69,7 @@ describe("CatCard", () => {
 	});
 
 	it("applies landscape style when width > height", () => {
-		render(
+		renderWithRouter(
 			<CatCard
 				data={{ ...mockCatObj[0], width: 600, height: 300 }}
 				index={0}
@@ -84,7 +83,7 @@ describe("CatCard", () => {
 	});
 
 	it("applies portrait style when height > width", () => {
-		render(
+		renderWithRouter(
 			<CatCard
 				data={{ ...mockCatObj[0], width: 200, height: 300 }}
 				index={0}
@@ -95,19 +94,5 @@ describe("CatCard", () => {
 			gridRowEnd: "span 2",
 			gridColumnEnd: "span 1",
 		});
-	});
-
-	it("opens CatModal on card click and closes it", () => {
-		render(
-			<CatCard
-				data={mockCatObj[0]}
-				index={0}
-			/>
-		);
-		const button = screen.getByTestId("cat-card");
-		fireEvent.click(button);
-		expect(screen.getByTestId("cat-modal")).toBeInTheDocument();
-		fireEvent.click(screen.getByText("Close"));
-		expect(screen.queryByTestId("cat-modal")).not.toBeInTheDocument();
 	});
 });

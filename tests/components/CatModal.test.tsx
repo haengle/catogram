@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { CatModal } from "../../src/components/CatModal";
 import { mockCatObj } from "../../src/lib/mocks/mockCatObj";

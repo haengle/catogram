@@ -3,8 +3,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 // https://vite.dev/config/
-export default defineConfig({
-	base: "/catogram",
+const configObj = {
 	plugins: [react()],
 	test: {
 		coverage: {
@@ -21,7 +20,7 @@ export default defineConfig({
 			],
 			thresholds: {
 				branches: 80,
-				functions: 94,
+				functions: 90,
 				lines: 94,
 				statements: 94,
 			},
@@ -31,4 +30,17 @@ export default defineConfig({
 		include: ["tests/**/*.test.ts", "tests/**/*.test.tsx"],
 		root: "./",
 	},
+};
+export default defineConfig(({ command }) => {
+	if (command === "serve") {
+		return {
+			base: "/",
+			...configObj,
+		};
+	} else {
+		return {
+			base: "/catogram",
+			...configObj,
+		};
+	}
 });

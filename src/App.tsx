@@ -1,7 +1,9 @@
 import { useRef, useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { getCatImages } from "./lib/getCatImages";
 import { Loader } from "./components/Loader";
 import { CatList } from "./components/CatList";
+import { CatDetail } from "./components/CatDetail";
 
 function App() {
 	const [catState, setCatState] = useState<{
@@ -45,22 +47,33 @@ function App() {
 	};
 
 	return (
-		<>
+		<BrowserRouter>
 			<header>
 				<h1>Catogram</h1>
 			</header>
 			<main className={`fade ${catState.loading ? "fade-in" : "fade-out"}`}>
-				{catState.loading ? (
-					<Loader />
-				) : (
-					<CatList
-						list={catState.catList}
-						loadMore={handleMoreImages}
-						moreLoading={catState.imagesLoading}
+				<Routes>
+					<Route
+						path='/'
+						element={
+							catState.loading ? (
+								<Loader />
+							) : (
+								<CatList
+									list={catState.catList}
+									loadMore={handleMoreImages}
+									moreLoading={catState.imagesLoading}
+								/>
+							)
+						}
 					/>
-				)}
+					<Route
+						path='/cat/:id'
+						element={<CatDetail catList={catState.catList} />}
+					/>
+				</Routes>
 			</main>
-		</>
+		</BrowserRouter>
 	);
 }
 

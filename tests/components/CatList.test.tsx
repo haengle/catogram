@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 import { describe, it, expect, vi } from "vitest";
 import { CatList } from "../../src/components/CatList/index";
 import { mockCatObj } from "../../src/lib/mocks/mockCatObj";
@@ -6,9 +7,12 @@ import "@testing-library/jest-dom";
 
 const loadMore = vi.fn();
 
+const renderWithRouter = (ui: React.ReactElement) =>
+	render(<BrowserRouter>{ui}</BrowserRouter>);
+
 describe("CatList", () => {
 	it("renders without crashing with empty list", () => {
-		render(
+		renderWithRouter(
 			<CatList
 				list={[]}
 				loadMore={loadMore}
@@ -19,7 +23,7 @@ describe("CatList", () => {
 	});
 
 	it("renders a CatCard for each cat in the list", () => {
-		render(
+		renderWithRouter(
 			<CatList
 				list={mockCatObj}
 				loadMore={loadMore}
@@ -32,7 +36,7 @@ describe("CatList", () => {
 	});
 
 	it("renders the 'more' button when list is not empty", () => {
-		render(
+		renderWithRouter(
 			<CatList
 				list={mockCatObj}
 				loadMore={loadMore}
@@ -43,7 +47,7 @@ describe("CatList", () => {
 	});
 
 	it("calls loadMore when 'Moar Cats!' button is clicked", () => {
-		render(
+		renderWithRouter(
 			<CatList
 				list={mockCatObj}
 				loadMore={loadMore}
@@ -55,7 +59,7 @@ describe("CatList", () => {
 	});
 
 	it("renders error message and 'Try Meow!' button when list is empty", () => {
-		render(
+		renderWithRouter(
 			<CatList
 				list={[]}
 				loadMore={loadMore}
@@ -68,7 +72,7 @@ describe("CatList", () => {
 
 	it("calls loadMore when 'Try Meow!' button is clicked", () => {
 		const loadMore = vi.fn();
-		render(
+		renderWithRouter(
 			<CatList
 				list={[]}
 				loadMore={loadMore}
