@@ -54,7 +54,7 @@ function App() {
 			<main className={`fade ${catState.loading ? "fade-in" : "fade-out"}`}>
 				<Routes>
 					<Route
-						path='/'
+						path='/catogram'
 						element={
 							catState.loading ? (
 								<Loader />
@@ -68,7 +68,7 @@ function App() {
 						}
 					/>
 					<Route
-						path='/cat/:id'
+						path='/catogram/cat/:id'
 						element={<CatDetail catList={catState.catList} />}
 					/>
 				</Routes>

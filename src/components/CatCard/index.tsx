@@ -39,7 +39,7 @@ export const CatCard = ({
 			<Link
 				data-testid='cat-card'
 				className={styles.catCard}
-				to={`/cat/${data.id}`}
+				to={`/catogram/cat/${data.id}`}
 				style={style}
 				aria-label={`${breedName} details`}
 			>

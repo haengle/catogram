@@ -3,7 +3,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 // https://vite.dev/config/
-const configObj = {
+export default defineConfig({
+	base: "/catogram",
 	plugins: [react()],
 	test: {
 		coverage: {
@@ -30,17 +31,4 @@ const configObj = {
 		include: ["tests/**/*.test.ts", "tests/**/*.test.tsx"],
 		root: "./",
 	},
-};
-export default defineConfig(({ command }) => {
-	if (command === "serve") {
-		return {
-			base: "/",
-			...configObj,
-		};
-	} else {
-		return {
-			base: "/catogram",
-			...configObj,
-		};
-	}
 });
