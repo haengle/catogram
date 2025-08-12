@@ -38,17 +38,10 @@ export const CatModal = ({
 		};
 	}, []);
 
-	function handleClose() {
-		if (dialogRef.current) {
-			dialogRef.current.close();
-		}
-		if (onClose) onClose();
-	}
-
 	return (
 		<dialog
 			data-testid='cat-modal'
-			onClose={handleClose}
+			onClose={onClose}
 			ref={dialogRef}
 			aria-modal='true'
 			aria-labelledby={data.id}
@@ -56,7 +49,7 @@ export const CatModal = ({
 			<button
 				data-testid='modal-close'
 				autoFocus
-				onClick={handleClose}
+				onClick={onClose}
 			>
 				Close
 			</button>
