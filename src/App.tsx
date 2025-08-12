@@ -47,14 +47,14 @@ function App() {
 	};
 
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename='/catogram'>
 			<header>
 				<h1>Catogram</h1>
 			</header>
 			<main className={`fade ${catState.loading ? "fade-in" : "fade-out"}`}>
 				<Routes>
 					<Route
-						path='/catogram'
+						path='/'
 						element={
 							catState.loading ? (
 								<Loader />
@@ -68,7 +68,7 @@ function App() {
 						}
 					/>
 					<Route
-						path='/catogram/cat/:id'
+						path='/cat/:id'
 						element={<CatDetail catList={catState.catList} />}
 					/>
 				</Routes>
